@@ -1,0 +1,54 @@
+.fighters-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+
+  .fighter-card {
+    background: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 600px;
+    transition: transform 0.3s;
+  }
+
+  .fighter-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .fighter-header {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .fighter-info {
+    display: flex;
+    gap: 20px;
+  }
+
+  .fighter-details,
+  .fighter-advanced-stats {
+    flex: 1;
+  }
+
+  .fighter-details p,
+  .fighter-advanced-stats p {
+    margin: 5px 0;
+  }
+
+  .no-stats {
+    color: #888;
+    font-style: italic;
+  }
+    .fighter-info {
+    display: flex; /* Use flexbox to make children side by side */
+    gap: 20px; /* Add some space between the two divs */
+  }
+
+  .fighter-details,
+  .fighter-advanced-stats {
+    flex: 1; /* Make both divs take equal width */
+  }

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ fighter.name }}</h1>
+  <p><strong>Height:</strong> {{ fighter.height }} cm</p>
+  <p><strong>Weight:</strong> {{ fighter.weight }} kg</p>
+  <p><strong>Stance:</strong> {{ fighter.stance }}</p>
+  <p><strong>Wins:</strong> {{ fighter.wins }}</p>
+  <p><strong>Losses:</strong> {{ fighter.losses }}</p>
+  <p><strong>Draws:</strong> {{ fighter.draws }}</p>
+
+  {% if fighter_stats %}
+    <h2>Advanced Statistics</h2>
+    <p><strong>Significant Strikes per Minute (SLpM):</strong> {{ fighter_stats.sig_strikes_perMin }}</p>
+    <p><strong>Strike Accuracy:</strong> {{ fighter_stats.strikes_accuracy }}%</p>
+    <p><strong>Significant Strikes Absorbed (SApM):</strong> {{ fighter_stats.sig_strikes_abs }}</p>
+    <p><strong>Strike Defense:</strong> {{ fighter_stats.strike_def }}%</p>
+    <p><strong>Takedown Average per 15 Min:</strong> {{ fighter_stats.takedown_average_per15 }}</p>
+    <p><strong>Takedown Accuracy:</strong> {{ fighter_stats.takedowns_accuracy }}%</p>
+    <p><strong>Takedown Defense:</strong> {{ fighter_stats.takedown_defense }}%</p>
+    <p><strong>Submission Average:</strong> {{ fighter_stats.sub_avg }}</p>
+  {% endif %}
+
+  <h2>Bout History</h2>
+  {% if bout_history %}
+    <table>
+      <tr>
+        <th>Opponent</th>
+        <th>Result</th>
+        <th>Method</th>
+        <th>Date</th>
+      </tr>
+      {% for bout in bout_history %}
+        <tr>
+          <td>
+            {% if bout.fighter_1.id == fighter.id %}
+              {{ bout.fighter_2.name }}
+            {% else %}
+              {{ bout.fighter_1.name }}
+            {% endif %}
+          </td>
+          <td>{{ bout.result }}</td>
+          <td>{{ bout.method }}</td>
+          <td>{{ bout.date }}</td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% else %}
+    <p>No bout history available for this fighter.</p>
+  {% endif %}
+{% endblock %}

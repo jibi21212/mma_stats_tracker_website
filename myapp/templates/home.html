@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Fighter Search Results</h1>
+  
+  {% if query %}
+    <p>Showing results for: "{{ query }}"</p>
+  {% endif %}
+
+  {% if fighter_data %}
+    <div class="fighters-container">
+      {% for data in fighter_data %}
+        <div class="fighter-card" style="border: 2px solid #ccc; border-radius: 10px; padding: 15px; margin-bottom: 20px;">
+          <div class="fighter-header">
+            <h2><a href="{% url 'fighter_profile' data.fighter.id %}">{{ data.fighter.name }}</a></h2>
+            <p>{{ data.fighter.stance }} Stance</p>
+          </div>
+          <div class="fighter-info" style="display: flex; gap: 20px;">
+            <div class="fighter-details" style="flex: 1;">
+              <p><strong>Height:</strong> {{ data.fighter.height }} cm</p>
+              <p><strong>Weight:</strong> {{ data.fighter.weight }} kg</p>
+              <p><strong>Wins:</strong> {{ data.fighter.wins }}</p>
+              <p><strong>Losses:</strong> {{ data.fighter.losses }}</p>
+              <p><strong>Draws:</strong> {{ data.fighter.draws }}</p>
+            </div>
+            
+            {% if data.stats %}
+              <div class="fighter-advanced-stats" style="flex: 1;">
+                <h3>Advanced Statistics:</h3>
+                <p><strong>Significant Strikes per Minute (SLpM):</strong> {{ data.stats.sig_strikes_perMin }}</p>
+                <p><strong>Strike Accuracy:</strong> {{ data.stats.strikes_accuracy }}%</p>
+                <p><strong>Significant Strikes Absorbed (SApM):</strong> {{ data.stats.sig_strikes_abs }}</p>
+                <p><strong>Strike Defense:</strong> {{ data.stats.strike_def }}%</p>
+                <p><strong>Takedown Average per 15 Min:</strong> {{ data.stats.takedown_average_per15 }}</p>
+                <p><strong>Takedown Accuracy:</strong> {{ data.stats.takedowns_accuracy }}%</p>
+                <p><strong>Takedown Defense:</strong> {{ data.stats.takedown_defense }}%</p>
+                <p><strong>Submission Average:</strong> {{ data.stats.sub_avg }}</p>
+              </div>
+            {% else %}
+              <p class="no-stats">No advanced statistics available for this fighter.</p>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No fighters found for your search.</p>
+  {% endif %}
+{% endblock %}
