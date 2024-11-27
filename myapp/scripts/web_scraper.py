@@ -1,3 +1,5 @@
+# Webscraper works but it doesnt send bout history properly
+
 import string
 from bs4 import BeautifulSoup
 import requests
