@@ -1,7 +1,13 @@
 from django.contrib import admin
-from .models import Fighter, FighterStats, Bout
+from .models import Event, Fight, Fighters, CareerStats, StrikeStats, FightPerformance, StrikeBreakdown, RoundStats
+
 
 # Register your models here.
-admin.site.register(Fighter)
-admin.site.register(FighterStats)
-admin.site.register(Bout)
+admin.site.register(Event)
+admin.site.register(Fight)
+admin.site.register(Fighters)
+admin.site.register(CareerStats)
+admin.site.register(StrikeStats)
+admin.site.register(FightPerformance)
+admin.site.register(StrikeBreakdown)
+admin.site.register(RoundStats)

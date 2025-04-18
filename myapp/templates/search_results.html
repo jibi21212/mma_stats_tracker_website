@@ -3,9 +3,12 @@
   <ul class="list-group">
     {% for fighter in fighters %}
       <li class="list-group-item">
-        <strong>{{ fighter.name }}</strong> ({{ fighter.height }}) - {{ fighter.weight }}<br>
+        <a href="{% url 'fighter_profile' fighter.fighters_id %}">
+          <strong>{{ fighter.name }}</strong>
+        </a>
+        ({{ fighter.height }} cm) - {{ fighter.weight }} kg<br>
         Record: {{ fighter.wins }} wins, {{ fighter.losses }} losses, {{ fighter.draws }} draws
-        DOB: {{ fighter.DOB }}, Stance: {{ fighter.Stance }}
+        DOB: {{ fighter.date_of_birth }}, Stance: {{ fighter.stance }}
       </li>
     {% empty %}
       <li class="list-group-item">No fighters found for "{{ query }}".</li>

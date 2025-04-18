@@ -2,6 +2,8 @@ from prefect import task, Flow
 from myapp.scripts.web_scraper import scrape_ufc_data
 from myapp.scripts.db_update import update_database  # Import database update logic (if needed)
 
+# Probably remove this
+
 @task
 def scrape_data():
     # Call the scraping logic from `web_scraper.py`

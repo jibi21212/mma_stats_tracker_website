@@ -8,37 +8,26 @@
   {% endif %}
 
   {% if fighter_data %}
-    <div class="fighters-container">
+    <div class="row">
       {% for data in fighter_data %}
-        <div class="fighter-card" style="border: 2px solid #ccc; border-radius: 10px; padding: 15px; margin-bottom: 20px;">
-          <div class="fighter-header">
-            <h2><a href="{% url 'fighter_profile' data.fighter.id %}">{{ data.fighter.name }}</a></h2>
-            <p>{{ data.fighter.stance }} Stance</p>
-          </div>
-          <div class="fighter-info" style="display: flex; gap: 20px;">
-            <div class="fighter-details" style="flex: 1;">
-              <p><strong>Height:</strong> {{ data.fighter.height }} cm</p>
-              <p><strong>Weight:</strong> {{ data.fighter.weight }} kg</p>
-              <p><strong>Wins:</strong> {{ data.fighter.wins }}</p>
-              <p><strong>Losses:</strong> {{ data.fighter.losses }}</p>
-              <p><strong>Draws:</strong> {{ data.fighter.draws }}</p>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title">
+                <a href="{% url 'fighter_profile' data.fighter.fighters_id %}">{{ data.fighter.name }}</a>
+              </h5>
+              <p class="card-text">
+                <span class="badge badge-primary">{{ data.fighter.stance }}</span>
+                <span class="badge badge-secondary">{{ data.fighter.weight }} kg</span>
+              </p>
+              <p class="card-text">
+                <strong>Record:</strong> {{ data.fighter.wins }}-{{ data.fighter.losses }}-{{ data.fighter.draws }}
+              </p>
+              {% if data.stats %}
+                
+              {% endif %}
+              <a href="{% url 'fighter_profile' data.fighter.fighters_id %}" class="btn btn-sm btn-outline-primary">View Full Profile</a>
             </div>
-            
-            {% if data.stats %}
-              <div class="fighter-advanced-stats" style="flex: 1;">
-                <h3>Advanced Statistics:</h3>
-                <p><strong>Significant Strikes per Minute (SLpM):</strong> {{ data.stats.sig_strikes_perMin }}</p>
-                <p><strong>Strike Accuracy:</strong> {{ data.stats.strikes_accuracy }}%</p>
-                <p><strong>Significant Strikes Absorbed (SApM):</strong> {{ data.stats.sig_strikes_abs }}</p>
-                <p><strong>Strike Defense:</strong> {{ data.stats.strike_def }}%</p>
-                <p><strong>Takedown Average per 15 Min:</strong> {{ data.stats.takedown_average_per15 }}</p>
-                <p><strong>Takedown Accuracy:</strong> {{ data.stats.takedowns_accuracy }}%</p>
-                <p><strong>Takedown Defense:</strong> {{ data.stats.takedown_defense }}%</p>
-                <p><strong>Submission Average:</strong> {{ data.stats.sub_avg }}</p>
-              </div>
-            {% else %}
-              <p class="no-stats">No advanced statistics available for this fighter.</p>
-            {% endif %}
           </div>
         </div>
       {% endfor %}

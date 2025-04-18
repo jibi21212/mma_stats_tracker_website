@@ -78,12 +78,8 @@ WSGI_APPLICATION = 'UFC_WEBSITE.wsgi.application'
 # Configure data bases here
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ufc_database',  # The name of the database you created
-        'USER': 'postgres',      # The username (typically 'postgres')
-        'PASSWORD': 'Jibsab209',  # The password you set
-        'HOST': 'localhost',     # Local PostgreSQL server
-        'PORT': '5432',          # Default PostgreSQL port
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': Path(__file__).resolve().parent / 'ufc_data.db',
     }
 }
 
